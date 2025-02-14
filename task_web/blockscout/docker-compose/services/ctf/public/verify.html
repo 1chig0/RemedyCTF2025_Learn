@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lyudovikos Explorer</title>
+    <link rel="stylesheet" href="css/pico.min.css">
+</head>
+<body>
+    <main class="container">
+        <nav>
+            <ul>
+                <li><a href="/"><strong>Lyudovikos Explorer</strong></a></li>
+            </ul>
+            <ul>
+                <li><a href="/">Blocks</a></li>
+                <li><a href="event">Events</a></li>
+                <li><a href="verify">Verify</a></li>
+            </ul>
+        </nav>
+
+        <form id="contract-form">
+            <fieldset>
+                <fieldset role="group">
+                    <input name="address" id="address-input" type="text" placeholder="Enter contract address"/>
+                    <button type="button" id="check-button">Check</button>
+                </fieldset>
+                <input name="compiler" id="compiler-input" type="text" placeholder="v0.8.28+commit.7893614a"/>
+                <input name="contract" id="contract-input" type="text" placeholder="LolNft"/>
+                <input name="constructor" id="constructor-input" type="text" placeholder="00"/>
+                <input name="license" id="license-input" type="text" placeholder="mit"/>
+                <label>
+                Contract JSON
+                <textarea
+                    name="contract-json"
+                    placeholder="{}"
+                    id="contract-json"
+                >
+                </textarea>
+            </fieldset>
+            
+            <input
+                type="submit"
+                value="Verify"
+            />
+        </form>
+    </main>
+
+    <script src="./scripts/verify.js"></script>
+</body>
+</html>

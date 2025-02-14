@@ -1,0 +1,7 @@
+services:
+  ctf:
+    build: ./ctf/
+    pull_policy: always
+    restart: always
+    stop_grace_period: 5m
+    container_name: 'ctf'

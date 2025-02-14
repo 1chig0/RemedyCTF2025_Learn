@@ -1,0 +1,76 @@
+version: '3.9'
+
+services:
+  redis-db:
+    extends:
+      file: ./services/redis.yml
+      service: redis-db
+
+  db-init:
+    extends:
+      file: ./services/db.yml
+      service: db-init
+
+  db:
+    depends_on:
+      db-init:
+        condition: service_completed_successfully
+    extends:
+      file: ./services/db.yml
+      service: db
+
+  anvil:
+    extends:
+      file: ./services/anvil.yml
+      service: anvil
+    expose:
+      - 8545
+    ports:
+      - 8545:8545
+
+  backend:
+    depends_on:
+      - db
+      - redis-db
+      - anvil
+    extends:
+      file: ./services/backend.yml
+      service: backend
+    build:
+      context: ..
+      dockerfile: ./docker/Dockerfile
+      args:
+        CACHE_EXCHANGE_RATES_PERIOD: ""
+        API_V1_READ_METHODS_DISABLED: "false"
+        DISABLE_WEBAPP: "false"
+        API_V1_WRITE_METHODS_DISABLED: "false"
+        CACHE_TOTAL_GAS_USAGE_COUNTER_ENABLED: ""
+        CACHE_ADDRESS_WITH_BALANCES_UPDATE_INTERVAL: ""
+        ADMIN_PANEL_ENABLED: ""
+        RELEASE_VERSION: 6.8.1
+    links:
+      - db:database
+      - anvil
+    expose:
+      - 4000
+    environment:
+        ETHEREUM_JSONRPC_HTTP_URL: http://anvil:8545/
+        ETHEREUM_JSONRPC_TRACE_URL: http://anvil:8545/
+        ETHEREUM_JSONRPC_WS_URL: ws://anvil:8545/
+        CHAIN_ID: '31337'
+    
+  ctf:
+    depends_on:
+      - backend
+    extends:
+      file: ./services/ctf.yml
+      service: ctf
+    links:
+      - backend
+    ports:
+      - 8080:8080
+
+  contract-verifier:
+    extends:
+      file: ./services/smart-contract-verifier.yml
+      service: smart-contract-verifier

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lyudovikos Explorer</title>
+    <link rel="stylesheet" href="css/pico.min.css">
+</head>
+<body>
+    <main class="container">
+        <nav>
+            <ul>
+                <li><a href="/"><strong>Lyudovikos Explorer</strong></a></li>
+            </ul>
+            <ul>
+                <li><a href="/">Blocks</a></li>
+                <li><a href="event">Events</a></li>
+                <li><a href="verify">Verify</a></li>
+            </ul>
+        </nav>
+
+        <div class="grid">
+            <div id="blocks" class="overflow-auto">
+                <table>
+                    <thead>
+                        <tr>
+                        <th scope="col">Height</th>
+                        <th scope="col">Miner</th>
+                        <th scope="col">Tx Count</th>
+                        </tr>
+                    </thead>
+                    <tbody id="blocks-table">
+                    </tbody>
+                </table>
+            </div>
+            <div id="transactions" class="overflow-auto">
+                <table>
+                    <thead>
+                        <tr>
+                        <th scope="col">Tx Hash</th>
+                        <th scope="col">From</th>
+                        <th scope="col">To</th>
+                        <th scope="col">Contract</th>
+                        </tr>
+                    </thead>
+                    <tbody id="transaction-table">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <script src="./scripts/blocks.js"></script>
+</body>
+</html>

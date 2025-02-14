@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lyudovikos Explorer</title>
+    <link rel="stylesheet" href="css/pico.min.css">
+</head>
+<body>
+    <main class="container">
+        <nav>
+            <ul>
+                <li><a href="/"><strong>Lyudovikos Explorer</strong></a></li>
+            </ul>
+            <ul>
+                <li><a href="/">Blocks</a></li>
+                <li><a href="event">Events</a></li>
+                <li><a href="verify">Verify</a></li>
+            </ul>
+        </nav>
+
+        <form id="log-form">
+            <fieldset role="group">
+                <input name="address" id="address-input" type="text" placeholder="Enter contract address"/>
+                <input type="submit" value="Submit" />
+            </fieldset>
+        </form>
+        <table class="overflow-auto">
+            <thead>
+                <tr>
+                <th scope="col">Index</th>
+                <th scope="col">Name</th>
+                <th scope="col">Type</th>
+                <th scope="col">Value</th>
+                </tr>
+            </thead>
+            <tbody id="log-table">
+            </tbody>
+        </table>
+    </main>
+
+    <script src="./scripts/logs.js"></script>
+</body>
+</html>

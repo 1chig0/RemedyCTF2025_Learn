@@ -1,0 +1,13 @@
+services:
+  anvil:
+    platform: linux/x86_64
+    image: ghcr.io/foundry-rs/foundry:latest
+    pull_policy: always
+    restart: always
+    stop_grace_period: 5m
+    container_name: 'anvil'
+    entrypoint:
+      - sh
+      - -c
+      - |
+        anvil --block-time 10 --host '::'
